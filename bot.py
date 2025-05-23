@@ -5,7 +5,7 @@ from groq import Groq
 
 
 class Bot:
-    def __init__(self, api_key, model_name):
+    def __init__(self, api_key: str, model_name: str):
         self.model_name = model_name
         self.llm = Groq(api_key=api_key)
         self.graph = MessageGraph()
@@ -17,7 +17,7 @@ class Bot:
         self.graph.set_finish_point("process")
         self.app = self.graph.compile()
 
-    def send_message(self, message) -> str:
+    def send_message(self, message: str) -> str:
         formatted_message = [HumanMessage(content=message)]
         response = self.app.invoke(formatted_message)
     
@@ -25,7 +25,7 @@ class Bot:
         clean_response = " ".join(clean_response.split()).strip()
         return clean_response
 
-    def process_message(self, messages):
+    def process_message(self, messages: list[HumanMessage]) -> str:
         last_msg = messages[-1].content
         message_words = last_msg.lower().split()
         if "time" in message_words:
@@ -77,6 +77,7 @@ def main():
     bot = Bot(api_key, model_name)
     bot.run()
     run_interaction_loop(bot)
+
 
 if __name__ == "__main__":
     main()
