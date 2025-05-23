@@ -2,6 +2,8 @@ from datetime import datetime, timezone
 from langgraph.graph import MessageGraph
 from langchain.schema import HumanMessage
 from groq import Groq
+import os
+from dotenv import load_dotenv
 
 
 class Bot:
@@ -72,7 +74,8 @@ def run_interaction_loop(bot: Bot) -> None:
 
 
 def main():
-    api_key = "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"
+    load_dotenv()
+    api_key = os.getenv("GROQ_API_KEY")
     model_name = "deepseek-r1-distill-llama-70b"
     bot = Bot(api_key, model_name)
     bot.run()
