@@ -3,6 +3,6 @@
 Используйте впн, так как используется клиент groq!!!  
 Для запуска используйте:  
 git clone https://github.com/mikle305/TestTask_CurrentTimeLlm  
-python -m venv .venv && source .venv/bin/activate  
+python -m venv .venv && source .venv/Scripts/activate  
 pip install -r requirements.txt  
 python bot.py  
